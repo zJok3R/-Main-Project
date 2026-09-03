@@ -16,11 +16,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.omnaut.de"),
   title: {
     default: `${brand.name} — KI-Implementierung für den Mittelstand`,
     template: `%s · ${brand.name}`,
   },
   description: brand.claim,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    siteName: brand.name,
+    title: `${brand.name} — KI-Implementierung für den Mittelstand`,
+    description: brand.claim,
+  },
+  twitter: { card: "summary" },
 };
 
 export default function RootLayout({

@@ -3,15 +3,15 @@
 // ausschließlich aus dieser Datei. Seiten-spezifische Texte (z. B.
 // Beispiel-Fälle) stehen in den jeweiligen Seiten-Dateien.
 //
-// ARBEITSTITEL: "KIWERK" ist der aktuelle Markenname. Umbenennen =
+// ARBEITSTITEL: "Omnaut" ist der aktuelle Markenname. Umbenennen =
 // brand.name hier ändern; alles andere folgt automatisch.
 
 export const brand = {
-  name: "KIWERK",
+  name: "Omnaut",
   claim:
     "AI Agents, Workflows und Automatisierung für den Mittelstand — zum Festpreis, DSGVO-konform, produktiv statt Pilot.",
-  email: "hallo@kiwerk.de",
-  linkedin: "https://www.linkedin.com/company/kiwerk", // nach Profilanlage ersetzen
+  email: "hallo@omnaut.de",
+  linkedin: "https://www.linkedin.com/company/omnaut", // nach Profilanlage ersetzen
 };
 
 export type NavItem = { href: string; label: string };

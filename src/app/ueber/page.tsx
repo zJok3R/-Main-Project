@@ -5,7 +5,7 @@ import { CtaBand } from "@/components/cta-band";
 export const metadata: Metadata = {
   title: "Über uns",
   description:
-    "Warum KIWERK: Festpreis statt Ticket-Uhr, Produktion statt Pilot, Übergabe statt Abhängigkeit — für Unternehmen ohne eigene KI-Abteilung.",
+    "Warum Omnaut: Festpreis statt Ticket-Uhr, Produktion statt Pilot, Übergabe statt Abhängigkeit — für Unternehmen ohne eigene KI-Abteilung.",
 };
 
 const prinzipien = [

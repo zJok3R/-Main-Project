@@ -3,7 +3,7 @@
 # Bei fehlendem gitleaks greift der grep-basierte Fallback im Hook.
 # Docs: https://github.com/gitleaks/gitleaks
 
-title = "KIWERK gitleaks config"
+title = "Omnaut gitleaks config"
 
 [extend]
 useDefault = true

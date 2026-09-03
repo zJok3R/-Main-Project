@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Omnaut — Landingpage & Checkout
 
-## Getting Started
+Next.js (App Router) Landingpage für Omnaut: KI-Implementierung für den
+Mittelstand. Enthält Festpreis-Pakete, Stripe-Checkout (PaymentElement) und
+einen signatur-verifizierten Webhook.
 
-First, run the development server:
+## Entwicklung
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # nur localhost (127.0.0.1), Port via -p <port>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Produktion
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm start          # Port via PORT=<port>
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deployment auf Vercel
 
-## Learn More
+1. Repo zu GitHub pushen und in Vercel importieren (Framework: Next.js, Root: Repo-Root).
+2. `vercel.json` pinnt die Region auf `fra1` (EU-Hosting).
+3. Domain `omnaut.de` in Vercel verbinden (TLS automatisch).
+4. Umgebungsvariablen in Vercel setzen (Project → Settings → Environment Variables):
 
-To learn more about Next.js, take a look at the following resources:
+| Variable | Wert | Woher |
+|---|---|---|
+| `STRIPE_SECRET_KEY` | `sk_...` (Test) bzw. `rk_live_...` (Live, restricted) | Stripe Dashboard → API Keys |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | `pk_...` | Stripe Dashboard → API Keys |
+| `STRIPE_PRICE_ID` | `price_...` | Stripe Dashboard → Produktkatalog |
+| `STRIPE_WEBHOOK_SECRET` | `whsec_...` | Stripe Dashboard → Webhooks → Signing Secret |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Webhook in Stripe registrieren:
+   - URL: `https://www.omnaut.de/api/webhook`
+   - Events: `payment_intent.succeeded`, `payment_intent.payment_failed`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Sicherheit
 
-## Deploy on Vercel
+- CSP/Security-Header in `next.config.ts` (Stripe-Domains enthalten).
+- `/api/checkout`: Rate-Limit (20/min/IP), Betrag serverseitig aus Stripe-Price,
+  Idempotenz via `checkoutId`.
+- `/api/webhook`: Signatur-Verifikation (`constructEvent`) + Event-Dedup.
+- `/api/health`: Uptime-Check.
+- Pre-Commit-Secret-Scan: `.githooks/pre-commit` (gitleaks optional, grep-Fallback).
+  Aktiviert via `git config core.hooksPath .githooks`.
+- Audit-Reports: `.gstack/security-reports/` (gitignored).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Stripe-Testkarten
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Erfolg: `4242 4242 4242 4242`, beliebiges Ablaufdatum, beliebige CVC.
+- 3DS-Test: `4000 0025 0000 3155`.
+- Details: https://docs.stripe.com/testing

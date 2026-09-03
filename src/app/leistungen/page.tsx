@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { brand, faqs, packages } from "@/lib/site-data";
 import { PriceCard } from "@/components/price-card";
+import { Checkout } from "@/components/checkout";
 import { CtaBand } from "@/components/cta-band";
 
 export const metadata: Metadata = {
@@ -30,6 +31,21 @@ export default function LeistungenPage() {
           {packages.map((p) => (
             <PriceCard key={p.id} pkg={p} />
           ))}
+        </div>
+      </section>
+
+      <section className="px-5 py-12">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="text-2xl font-semibold tracking-tight text-ink">
+            Direkt buchen
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+            Kartenzahlung über Stripe, Festpreis inkl. MwSt. Nach der Zahlung
+            erhältst du deinen Zugang sofort per E-Mail.
+          </p>
+          <div className="mt-8">
+            <Checkout productName="KI-Workshop" />
+          </div>
         </div>
       </section>
 
