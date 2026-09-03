@@ -1,0 +1,41 @@
+#!/bin/sh
+# Pre-Commit Secret-Scan. Verhindert, dass Keys/Secrets in Commits landen.
+# Aktivieren:  git config core.hooksPath .githooks
+# gitleaks installieren (optional, stärker):  brew install gitleaks
+# Ohne gitleaks läuft ein grep-Fallback mit den wichtigsten Mustern.
+
+staged_files=$(git diff --cached --name-only --diff-filter=ACM)
+
+if [ -z "$staged_files" ]; then
+  exit 0
+fi
+
+# Pfad 1: gitleaks, falls installiert.
+if command -v gitleaks >/dev/null 2>&1; then
+  if gitleaks protect --staged -v --config .gitleaks.toml; then
+    exit 0
+  else
+    echo "❌ gitleaks: mögliches Secret im Staging-Bereich gefunden. Commit abgebrochen."
+    echo "   Absichtlich? Prüfen, entschärfen (Key rotieren!), dann erneut committen."
+    exit 1
+  fi
+fi
+
+# Pfad 2: grep-Fallback (kein gitleaks installiert).
+patterns='(sk_live_[0-9a-zA-Z]{10,}|rk_live_[0-9a-zA-Z]{10,}|whsec_[0-9a-zA-Z]{10,}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{30,}|ghp_[0-9A-Za-z]{30,})'
+
+found=""
+for f in $staged_files; do
+  [ -f "$f" ] || continue
+  if grep -nE "$patterns" "$f" 2>/dev/null | grep -vE '(sk_test_|pk_test_|whsec_|\.\.\.)' | grep -q .; then
+    found="$found\n  $f"
+  fi
+done
+
+if [ -n "$found" ]; then
+  echo "❌ Secret-Scan: verdächtige Muster in:$found"
+  echo "   Key rotieren, Datei bereinigen, dann erneut committen."
+  exit 1
+fi
+
+exit 0

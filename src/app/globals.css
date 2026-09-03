@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+/*
+  Produkt X — Checkout
+  Register: Product UI (design serves the task). Restrained, earned-familiarity.
+  Mood: daylight commerce, calm confidence with warmth. The character lives in
+  a COMMITTED honey/ochre summary rail (OKLCH hue ~78) and a soft warm backdrop
+  wash — NOT in a flat cream body (that's the AI tell). The payment panel stays
+  near-white so the form reads as trustworthy and legible.
+*/
+
+:root {
+  --canvas: oklch(1 0 0); /* pure white — the payment panel */
+  --surface: oklch(0.985 0.008 83);
+  --surface-2: oklch(0.965 0.012 83);
+  --ink: oklch(0.23 0.012 83); /* near-black body */
+  --muted: oklch(0.46 0.02 78); /* secondary text — ≥4.5:1 on white */
+  --primary: oklch(0.76 0.12 77); /* honey — brand anchor */
+  --primary-strong: oklch(0.62 0.12 68); /* deeper honey: links/accents on light */
+  --on-primary: oklch(0.25 0.035 72); /* espresso text on honey button */
+  --line: oklch(0.91 0.01 83);
+  --error: oklch(0.55 0.19 25);
+  --success: oklch(0.55 0.13 150);
+
+  /* Committed honey summary rail */
+  --summary: oklch(0.92 0.055 80);
+  --summary-ink: oklch(0.28 0.04 62);
+  --summary-muted: oklch(0.44 0.045 64); /* ≥4.5:1 on the honey surface */
+  --summary-line: oklch(0.84 0.05 78);
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-on-primary: var(--on-primary);
+  --color-line: var(--line);
+  --color-error: var(--error);
+  --color-success: var(--success);
+  --color-summary: var(--summary);
+  --color-summary-ink: var(--summary-ink);
+  --color-summary-muted: var(--summary-muted);
+  --color-summary-line: var(--summary-line);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  /* Warm corner wash over an almost-white base — depth, not flat cream. */
+  background:
+    radial-gradient(
+      120% 110% at 12% 0%,
+      oklch(0.96 0.04 82) 0%,
+      transparent 52%
+    ),
+    radial-gradient(
+      100% 100% at 100% 100%,
+      oklch(0.96 0.03 48) 0%,
+      transparent 48%
+    ),
+    oklch(0.992 0.004 80);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Committed honey summary rail with a soft top-right highlight. */
+.summary-rail {
+  background:
+    radial-gradient(
+      130% 90% at 100% 0%,
+      oklch(0.95 0.06 86) 0%,
+      transparent 60%
+    ),
+    var(--summary);
+}
+
+.panel-shadow {
+  box-shadow:
+    0 1px 2px oklch(0 0 0 / 0.04),
+    0 18px 50px -18px oklch(0.4 0.06 70 / 0.28);
+}
+
+/* Brand-tinted checkbox for the consent boxes. */
+.consent-check {
+  accent-color: var(--primary-strong);
+}
+
+/* Shared prose styling for the legal pages. */
+.legal h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.legal p,
+.legal li {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.legal p + p {
+  margin-top: 0.75rem;
+}
+.legal ul {
+  margin: 0.5rem 0;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+.legal a {
+  color: var(--primary-strong);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.legal strong {
+  color: var(--ink);
+}
+
+/* Skeleton shimmer — conveys loading state (product motion: state, not decoration). */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(1 0 0 / 0.6),
+    transparent
+  );
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

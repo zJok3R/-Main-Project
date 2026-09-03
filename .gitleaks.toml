@@ -1,0 +1,37 @@
+# gitleaks config — schützt vor Secret-Leaks in Commits.
+# Nutzung: gitleaks protect --staged  (via .githooks/pre-commit)
+# Bei fehlendem gitleaks greift der grep-basierte Fallback im Hook.
+# Docs: https://github.com/gitleaks/gitleaks
+
+title = "KIWERK gitleaks config"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "stripe-live-secret-key"
+description = "Stripe Live Secret Key"
+regex = '''sk_live_[0-9a-zA-Z]{16,}'''
+tags = ["key", "stripe"]
+
+[[rules]]
+id = "stripe-restricted-key"
+description = "Stripe Restricted Key"
+regex = '''rk_live_[0-9a-zA-Z]{16,}'''
+tags = ["key", "stripe"]
+
+[[rules]]
+id = "stripe-webhook-secret"
+description = "Stripe Webhook Signing Secret"
+regex = '''whsec_[0-9a-zA-Z]{16,}'''
+tags = ["key", "stripe"]
+
+[allowlist]
+description = "Platzhalter in Doku/Templates erlauben"
+regexes = [
+  '''sk_test_\.\.\.''',
+  '''pk_test_\.\.\.''',
+  '''whsec_\.\.\.''',
+  '''sk_live_\.\.\.''',
+]
+paths = ['''.env.example''']
