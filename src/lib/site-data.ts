@@ -65,7 +65,7 @@ export const packages: PricePackage[] = [
   {
     id: "ki-workshop",
     name: "KI-Workshop",
-    price: "1.900 €",
+    price: "2.900 €",
     priceUnit: "einmalig",
     duration: "1 Tag",
     audience: "Teams, die vor der Investition Klarheit wollen",
@@ -103,7 +103,7 @@ export const packages: PricePackage[] = [
   {
     id: "workflow-automation",
     name: "Workflow-Automation",
-    price: "ab 8.900 €",
+    price: "ab 7.900 €",
     priceUnit: "einmalig",
     duration: "2–4 Wochen",
     audience: "Teams mit manueller Routine: Anfragen, Rechnungen, E-Mail-Flut",
@@ -125,7 +125,7 @@ export const packages: PricePackage[] = [
   {
     id: "ki-chatbot",
     name: "KI-Chatbot",
-    price: "ab 14.900 €",
+    price: "ab 11.900 €",
     priceUnit: "einmalig",
     duration: "3–6 Wochen",
     audience: "Firmen mit wiederkehrenden Kundenfragen",
@@ -143,7 +143,7 @@ export const packages: PricePackage[] = [
   {
     id: "rag-knowledge-agent",
     name: "RAG / Knowledge-Agent",
-    price: "ab 24.900 €",
+    price: "ab 19.900 €",
     priceUnit: "einmalig",
     duration: "4–8 Wochen",
     audience: "Firmen mit verteiltem Wissen: Handbücher, Wikis, ERP-Notizen",
@@ -164,7 +164,7 @@ export const packages: PricePackage[] = [
   {
     id: "multi-agent",
     name: "Multi-Agent-System",
-    price: "ab 49.900 €",
+    price: "ab 34.900 €",
     priceUnit: "einmalig",
     duration: "8–16 Wochen",
     audience: "Prozessübergreifende Automatisierung mit mehreren Agenten",
