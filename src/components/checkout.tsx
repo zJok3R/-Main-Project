@@ -6,9 +6,10 @@ import Link from "next/link";
 // Stripe Payment Link (gehostete Checkout-Seite). Die URL ist öffentlich —
 // sie ist dafür da, an Kundinnen weitergegeben zu werden, kein Geheimnis.
 // Falls der Link in Stripe neu erstellt wird: NEXT_PUBLIC_STRIPE_PAYMENT_LINK
-// in .env setzen — überschreibt diesen Default.
+// in .env setzen — überschreibt diesen Default. `||` statt `??`: auch ein
+// leer gesetzter Env-Wert fällt auf den Default zurück.
 const PAYMENT_LINK =
-  process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK ??
+  process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK ||
   "https://buy.stripe.com/3cI7sMcUDd2l5S7aOOfw400";
 
 // Regelbesteuert: der deutsche B2C-Bruttopreis enthält die MwSt. bereits.
@@ -130,6 +131,11 @@ export function Checkout({
               >
                 Zahlungspflichtig bestellen
               </button>
+              {!canSubmit && (
+                <p className="text-center text-xs font-medium text-primary-strong">
+                  Bitte setze oben beide Häkchen, um zu bestellen.
+                </p>
+              )}
               <p className="text-center text-xs text-muted">
                 Gesamtbetrag {grossLabel} inkl. MwSt.
               </p>
