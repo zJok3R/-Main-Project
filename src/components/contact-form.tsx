@@ -12,6 +12,7 @@ export function ContactForm({ options }: { options: ContactOption[] }) {
   const [email, setEmail] = useState("");
   const [topic, setTopic] = useState("");
   const [message, setMessage] = useState("");
+  const [sent, setSent] = useState(false);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -20,6 +21,7 @@ export function ContactForm({ options }: { options: ContactOption[] }) {
       `Name: ${name}\nFirma: ${company}\nE-Mail: ${email}\n\nThema: ${topic || "Allgemein"}\n\n${message}`,
     );
     window.location.href = `mailto:${brand.email}?subject=${subject}&body=${body}`;
+    setSent(true);
   }
 
   const inputClass =
@@ -95,6 +97,19 @@ export function ContactForm({ options }: { options: ContactOption[] }) {
         Die Anfrage öffnet dein E-Mail-Programm mit vorausgefüllter Nachricht.
         Deine Daten verwenden wir ausschließlich zur Beantwortung.
       </p>
+      {sent && (
+        <p className="rounded-lg border border-line bg-surface px-3 py-2 text-xs text-ink">
+          Dein E-Mail-Programm öffnet sich. Falls nichts passiert, schreib
+          direkt an{" "}
+          <a
+            href={`mailto:${brand.email}`}
+            className="font-medium text-primary-strong hover:underline"
+          >
+            {brand.email}
+          </a>
+          .
+        </p>
+      )}
     </form>
   );
 }

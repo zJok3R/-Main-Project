@@ -79,8 +79,8 @@ export default async function SuccessPage({
         </h1>
         <p className="mt-3 text-sm leading-relaxed text-muted">
           {succeeded
-            ? `Danke für deinen Kauf von ${productName ?? "deinem Produkt"}. Eine Bestätigung ist unterwegs.`
-            : "Sobald die Zahlung bestätigt ist, erhältst du eine Benachrichtigung."}
+            ? `Danke für deinen Kauf von ${productName ?? "deinem KI-Workshop"}. Deine Zahlungsbestätigung von Stripe ist per E-Mail unterwegs.`
+            : "Sobald die Zahlung bestätigt ist, erhältst du deine Bestätigung von Stripe per E-Mail."}
         </p>
 
         <Link

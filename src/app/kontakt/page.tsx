@@ -36,17 +36,6 @@ export default function KontaktPage() {
               {brand.email}
             </a>
           </p>
-          <p className="mt-1 text-muted">
-            LinkedIn:{" "}
-            <a
-              href={brand.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-primary-strong hover:underline"
-            >
-              {brand.name} auf LinkedIn
-            </a>
-          </p>
         </div>
 
         <ContactForm options={options} />

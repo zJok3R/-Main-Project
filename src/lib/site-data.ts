@@ -11,7 +11,6 @@ export const brand = {
   claim:
     "AI Agents, Workflows und Automatisierung für den Mittelstand — zum Festpreis, DSGVO-konform, produktiv statt Pilot.",
   email: "kontakt@omnaut.de",
-  linkedin: "https://www.linkedin.com/company/omnaut", // nach Profilanlage ersetzen
 };
 
 export type NavItem = { href: string; label: string };

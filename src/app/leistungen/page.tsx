@@ -31,7 +31,7 @@ export default function LeistungenPage() {
       <section className="px-5 py-8">
         <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
           {packages.map((p) => (
-            <PriceCard key={p.id} pkg={p} />
+            <PriceCard key={p.id} pkg={p} headingLevel="h2" />
           ))}
         </div>
       </section>

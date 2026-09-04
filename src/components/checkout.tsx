@@ -69,9 +69,9 @@ export function Checkout({
           <p className="text-xs font-medium tracking-wide text-summary-muted uppercase">
             Deine Bestellung
           </p>
-          <h1 className="mt-3 text-2xl leading-tight font-semibold tracking-tight text-balance text-summary-ink">
+          <h3 className="mt-3 text-2xl leading-tight font-semibold tracking-tight text-balance text-summary-ink">
             {productName}
-          </h1>
+          </h3>
           <p className="mt-2 text-sm text-summary-muted">
             Beginn vor Ablauf der Widerrufsfrist — mit deiner ausdrücklichen
             Zustimmung
