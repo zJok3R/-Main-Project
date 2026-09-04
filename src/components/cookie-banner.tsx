@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 // Cookie-Consent-Banner (TTDSG/DSGVO).
 //
@@ -38,8 +38,15 @@ function writeConsent(stats: boolean) {
 }
 
 export function CookieBanner() {
-  // Lazy initialisiert: auf dem Server unsichtbar, nach der Hydration nur
-  // sichtbar, wenn noch keine Einwilligung gespeichert ist.
+  // Hydration-sicherer Mount-Gate (useSyncExternalStore): Server-Snapshot
+  // false → Banner nie im Server-HTML, kein Hydration-Mismatch, kein Flash.
+  // Nach der Hydration true → Banner erscheint nur ohne gespeicherte
+  // Einwilligung.
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
   const [consent, setConsent] = useState<{
     essential: boolean;
     stats: boolean;
@@ -75,11 +82,11 @@ export function CookieBanner() {
       window.removeEventListener("omnaut:open-cookie-settings", onOpen);
   }, []);
 
+  if (!mounted) return null;
   if (!open && consent !== null) return null;
 
   return (
     <div
-      suppressHydrationWarning
       className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-md rounded-2xl border border-line bg-canvas p-5 panel-shadow"
       role="dialog"
       aria-label="Cookie-Einstellungen"
