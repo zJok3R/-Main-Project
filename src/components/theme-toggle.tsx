@@ -1,11 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 // Dark-Mode-Switch. Zustand wird in localStorage gemerkt; das Einblenden vor
 // dem Hydrieren übernimmt das Inline-Script in app/layout.tsx (kein Flackern).
 // Der Initialzustand wird einmalig lazy aus dem DOM gelesen.
+//
+// Bis zum Mount wird ein gleich großer Platzhalter gerendert: Der echte
+// Zustand (classList) ist serverseitig nicht bekannt. Würde der Switch sofort
+// mit dem Client-Zustand rendern, entstünde bei Dark-Mode-Nutzern ein
+// Hydration-Mismatch (aria-checked hell/dunkel).
 export function ThemeToggle() {
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
   const [dark, setDark] = useState<boolean>(
     () =>
       typeof document !== "undefined" &&
@@ -21,6 +31,12 @@ export function ThemeToggle() {
       // localStorage nicht verfügbar (z. B. Privatmodus) — nur visuell togglen.
     }
     setDark(next);
+  }
+
+  if (!mounted) {
+    return (
+      <span aria-hidden="true" className="inline-block h-6 w-11 shrink-0" />
+    );
   }
 
   return (
