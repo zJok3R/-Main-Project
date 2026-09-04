@@ -12,7 +12,7 @@ export function SiteHeader() {
         >
           {brand.name}
         </Link>
-        <nav className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-muted">
+        <nav className="hidden flex-wrap items-center gap-x-5 gap-y-1 text-sm text-muted sm:flex">
           {mainNav.map((item) => (
             <Link
               key={item.href}
