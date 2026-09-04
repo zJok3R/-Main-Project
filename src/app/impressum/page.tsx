@@ -1,6 +1,6 @@
 import { LegalPage } from "@/components/legal-page";
 
-export const metadata = { title: "Impressum — Produkt X" };
+export const metadata = { title: "Impressum" };
 
 export default function ImpressumPage() {
   return (
@@ -9,27 +9,24 @@ export default function ImpressumPage() {
 
       <h2>Anbieter</h2>
       <p>
-        [Vor- und Nachname]
+        Max Gaube
         <br />
-        [Straße Hausnummer]
+        Omnaut (Einzelunternehmen)
         <br />
-        [PLZ Ort]
+        Bonhoefferplatz 24
+        <br />
+        01157 Dresden
         <br />
         Deutschland
       </p>
 
       <h2>Kontakt</h2>
       <p>
-        Telefon: [Telefonnummer]
-        <br />
-        E-Mail: [deine@adresse.de]
+        E-Mail: <a href="mailto:kontakt@omnaut.de">kontakt@omnaut.de</a>
       </p>
 
-      <h2>Umsatzsteuer-Identifikationsnummer</h2>
-      <p>Gemäß § 27a UStG: [DE000000000]</p>
-
       <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
-      <p>[Name, Anschrift wie oben]</p>
+      <p>Max Gaube, Anschrift wie oben</p>
 
       <h2>EU-Streitschlichtung</h2>
       <p>

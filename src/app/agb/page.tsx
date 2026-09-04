@@ -1,23 +1,31 @@
 import { LegalPage } from "@/components/legal-page";
 
-export const metadata = { title: "AGB — Produkt X" };
+export const metadata = { title: "AGB" };
 
 export default function AgbPage() {
   return (
     <LegalPage title="Allgemeine Geschäftsbedingungen">
       <p>
-        <strong>Platzhalter.</strong> AGB sind für den Verkauf an Verbraucher
-        nicht zwingend, aber empfehlenswert. Über einen Generator passend zu
-        deinem digitalen Produkt erstellen und hier einsetzen.
+        Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge über
+        die auf dieser Website angebotenen Leistungen von Omnaut (Max Gaube,
+        Bonhoefferplatz 24, 01157 Dresden, kontakt@omnaut.de) gegenüber
+        Verbrauchern und Unternehmern.
       </p>
 
       <h2>1. Geltungsbereich</h2>
-      <p>[…]</p>
+      <p>
+        Es gelten ausschließlich diese AGB. Abweichende Bedingungen des
+        Kunden werden nicht anerkannt, es sei denn, wir stimmen ihnen
+        ausdrücklich schriftlich zu.
+      </p>
 
       <h2>2. Vertragsschluss</h2>
       <p>
-        Mit Klick auf „Zahlungspflichtig bestellen“ gibst du ein verbindliches
-        Angebot ab. [Beschreibung des Vertragsschlusses ergänzen.]
+        Die Darstellung der Leistungen auf dieser Website stellt kein
+        rechtlich bindendes Angebot dar. Mit Klick auf „Zahlungspflichtig
+        bestellen“ und erfolgreicher Zahlung über Stripe kommt der Vertrag
+        zustande. Du erhältst eine Bestätigung per E-Mail. Vertragssprache
+        ist Deutsch.
       </p>
 
       <h2>3. Preise und Zahlung</h2>
@@ -27,11 +35,20 @@ export default function AgbPage() {
       </p>
 
       <h2>4. Leistung / digitale Inhalte</h2>
-      <p>[Art und Umfang der digitalen Leistung beschreiben.]</p>
+      <p>
+        Umfang und Dauer der Leistung ergeben sich aus der
+        Leistungsbeschreibung des jeweils gebuchten Pakets. Digitale Inhalte
+        werden nach Zahlungseingang bereitgestellt.
+      </p>
 
       <h2>5. Widerrufsrecht</h2>
       <p>
         Es gilt die <a href="/widerruf">Widerrufsbelehrung</a>.
+      </p>
+
+      <p>
+        <em>Hinweis: Vor dem Verkauf komplexer Projektleistungen empfiehlt
+        sich eine anwaltliche Prüfung dieser AGB.</em>
       </p>
     </LegalPage>
   );

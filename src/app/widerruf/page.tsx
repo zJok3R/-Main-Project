@@ -1,6 +1,6 @@
 import { LegalPage } from "@/components/legal-page";
 
-export const metadata = { title: "Widerrufsbelehrung — Produkt X" };
+export const metadata = { title: "Widerrufsbelehrung" };
 
 export default function WiderrufPage() {
   return (
@@ -12,10 +12,17 @@ export default function WiderrufPage() {
         Tag des Vertragsabschlusses.
       </p>
       <p>
-        Um dein Widerrufsrecht auszuüben, musst du uns ([Name, Anschrift,
-        E-Mail]) mittels einer eindeutigen Erklärung (z. B. ein mit der Post
-        versandter Brief oder eine E-Mail) über deinen Entschluss, diesen
-        Vertrag zu widerrufen, informieren.
+        Um dein Widerrufsrecht auszuüben, musst du uns — Max Gaube, Omnaut,
+        Bonhoefferplatz 24, 01157 Dresden, kontakt@omnaut.de — mittels einer
+        eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder
+        eine E-Mail) über deinen Entschluss, diesen Vertrag zu widerrufen,
+        informieren. Du kannst dafür das Muster-Widerrufsformular verwenden,
+        das jedoch nicht vorgeschrieben ist.
+      </p>
+      <p>
+        Zur Wahrung der Widerrufsfrist reicht es aus, dass du die Mitteilung
+        über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist
+        absendest.
       </p>
 
       <h2>Erlöschen des Widerrufsrechts bei digitalen Inhalten</h2>
@@ -31,13 +38,14 @@ export default function WiderrufPage() {
 
       <h2>Folgen des Widerrufs</h2>
       <p>
-        [Standard-Formulierung zur Rückzahlung gemäß Muster-Widerrufsbelehrung
-        einsetzen.]
-      </p>
-
-      <p>
-        <strong>Platzhalter:</strong> Verbindliche Formulierung inklusive
-        Muster-Widerrufsformular über einen Generator oder Anwalt einsetzen.
+        Wenn du diesen Vertrag widerrufst, haben wir dir alle Zahlungen, die
+        wir von dir erhalten haben, unverzüglich und spätestens binnen
+        vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über
+        deinen Widerruf dieses Vertrags bei uns eingegangen ist. Für diese
+        Rückzahlung verwenden wir dasselbe Zahlungsmittel, das du bei der
+        ursprünglichen Transaktion eingesetzt hast, es sei denn, mit dir wurde
+        ausdrücklich etwas anderes vereinbart; in keinem Fall werden dir
+        wegen dieser Rückzahlung Entgelte berechnet.
       </p>
     </LegalPage>
   );

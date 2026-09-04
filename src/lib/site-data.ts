@@ -10,7 +10,7 @@ export const brand = {
   name: "Omnaut",
   claim:
     "AI Agents, Workflows und Automatisierung für den Mittelstand — zum Festpreis, DSGVO-konform, produktiv statt Pilot.",
-  email: "hallo@omnaut.de",
+  email: "kontakt@omnaut.de",
   linkedin: "https://www.linkedin.com/company/omnaut", // nach Profilanlage ersetzen
 };
 
