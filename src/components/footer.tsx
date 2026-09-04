@@ -40,6 +40,9 @@ export function Footer() {
         <p className="text-xs text-muted">
           © {year} · {brand.name} · Alle Preise inkl. MwSt.
         </p>
+        <p className="text-xs text-muted">
+          Diese Website wurde mit KI-Unterstützung erstellt.
+        </p>
       </div>
     </footer>
   );
