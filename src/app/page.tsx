@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { brand, guarantees, packages, processSteps } from "@/lib/site-data";
+import { brand, guarantees, packages, processSteps, referenzen } from "@/lib/site-data";
 import { PriceCard } from "@/components/price-card";
 import { CtaBand } from "@/components/cta-band";
 
@@ -92,6 +92,46 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-12">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="text-2xl font-semibold tracking-tight text-ink">
+            Ergebnisse, keine Versprechen
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+            Drei typische Mittelstandskonstellationen als ehrlich
+            gekennzeichnete Beispielrechnung — keine echten Kundenprojekte,
+            aber der Zahlenrahmen, den solche Projekte liefern.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {referenzen.map((r) => (
+              <div
+                key={r.branche}
+                className="rounded-2xl border border-line bg-surface p-5"
+              >
+                <p className="text-xs font-semibold uppercase tracking-wide text-primary-strong">
+                  {r.paket}
+                </p>
+                <p className="mt-3 text-3xl font-semibold tracking-tight text-ink">
+                  {r.kennzahl}
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-muted">
+                  {r.kennzahlLabel}
+                </p>
+                <p className="mt-3 text-xs text-muted">{r.branche}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-center text-sm text-muted">
+            <Link
+              href="/referenzen"
+              className="font-medium text-primary-strong hover:underline"
+            >
+              Alle Referenzen ansehen →
+            </Link>
+          </p>
         </div>
       </section>
 

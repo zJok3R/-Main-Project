@@ -273,3 +273,65 @@ export const faqs: FaqItem[] = [
     a: "Jede Etappe endet mit einem Meilenstein. Passt etwas nicht, können wir an der Stelle stoppen — gezahlt wird nur, was geliefert und abgenommen wurde.",
   },
 ];
+
+export type Referenz = {
+  branche: string;
+  paket: string;
+  kennzahl: string;
+  kennzahlLabel: string;
+  ausgangslage: string;
+  umsetzung: string;
+  ergebnisse: string[];
+  dauer: string;
+};
+
+// Ehrlichkeits-Regel: Junge Agentur. Die Fälle sind klar gekennzeichnete
+// Beispielrechnungen (illustrativ) — Struktur, Vorgehen und Zahlenrahmen
+// aus typischen Mittelstandsprojekten, keine echten Kundenprojekte.
+export const referenzen: Referenz[] = [
+  {
+    branche: "Produktionsunternehmen, 120 Mitarbeitende",
+    paket: "RAG / Knowledge-Agent",
+    kennzahl: "–73 %",
+    kennzahlLabel: "Suchzeit pro Tag und Kopf",
+    ausgangslage:
+      "Handbücher, Wikis und ERP-Notizen auf fünf Systeme verteilt — Antworten auf Fachfragen dauern Tage.",
+    umsetzung:
+      "Datenaufbereitung aus fünf Quellen, Retrieval-Pipeline mit Quellenangabe, Rollenrechte für Produktion und Vertrieb.",
+    ergebnisse: [
+      "Suchzeit von 45 auf 12 Minuten pro Tag und Kopf",
+      "Auskunftsfähigkeit ohne Störung von Fachexperten",
+    ],
+    dauer: "5 Wochen",
+  },
+  {
+    branche: "Handelsbüro, 25 Mitarbeitende",
+    paket: "Workflow-Automation",
+    kennzahl: "9 Std./Woche",
+    kennzahlLabel: "manuelle Arbeit eingespart",
+    ausgangslage:
+      "Anfragen, Rechnungen und E-Mail-Sortierung manuell — drei Kollegen, neun Stunden pro Woche.",
+    umsetzung:
+      "Drei n8n-Workflows: Anfrage → CRM, Rechnung → Buchhaltung, E-Mail-Triage mit KI-Klassifikation.",
+    ergebnisse: [
+      "9 Stunden pro Woche eingespart",
+      "ROI nach unter vier Monaten",
+    ],
+    dauer: "3 Wochen",
+  },
+  {
+    branche: "Dienstleister, 60 Mitarbeitende",
+    paket: "KI-Chatbot",
+    kennzahl: "68 %",
+    kennzahlLabel: "Anfragen automatisch beantwortet",
+    ausgangslage:
+      "Hotline mit 200 wiederkehrenden Fragen — Kunden warten, Team blockiert.",
+    umsetzung:
+      "Chatbot auf Website und Teams, Wissensbasis aus 200 FAQs, DSGVO-konformes EU-Hosting, Eskalationsregeln.",
+    ergebnisse: [
+      "68 % der Anfragen automatisch beantwortet",
+      "Hotline-Kapazität für echte Fälle frei",
+    ],
+    dauer: "4 Wochen",
+  },
+];
