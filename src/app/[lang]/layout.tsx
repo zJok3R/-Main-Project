@@ -4,6 +4,7 @@ import "../globals.css";
 import { Footer } from "@/components/footer";
 import { SiteHeader } from "@/components/site-header";
 import { CookieBanner } from "@/components/cookie-banner";
+import { ThemeSync } from "@/components/theme-sync";
 import { brand } from "@/lib/site-data";
 import { lang as getLang } from "next/root-params";
 import { dictionaries, hasLocale, locales } from "@/lib/i18n";
@@ -78,6 +79,7 @@ export default async function RootLayout({
         <SiteHeader />
         {children}
         <Footer />
+        <ThemeSync />
         <CookieBanner t={t.cookie} lang={lang} />
       </body>
     </html>
