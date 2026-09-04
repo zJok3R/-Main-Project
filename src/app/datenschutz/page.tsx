@@ -71,12 +71,21 @@ export default function DatenschutzPage() {
         Zeitpunkt und Status. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO.
       </p>
 
-      <h2>Cookies</h2>
+      <h2>Cookies &amp; Einwilligung</h2>
       <p>
-        Diese Website setzt selbst keine Tracking- oder Analyse-Cookies.
-        Technisch notwendige Cookies können im Rahmen der Zahlungsabwicklung
-        durch Stripe gesetzt werden (siehe oben). Ein Cookie-Banner ist daher
-        nicht erforderlich.
+        Beim ersten Besuch fragt ein Cookie-Banner deine Einwilligung ab.
+        <strong>Technisch notwendige Cookies</strong> werden im Rahmen der
+        Zahlungsabwicklung durch Stripe gesetzt (siehe oben) sowie zur
+        Speicherung deiner Cookie-Einwilligung selbst („omnaut-consent“,
+        Laufzeit 180 Tage). Diese sind für den Betrieb erforderlich und nicht
+        abwählbar (Rechtsgrundlage: § 25 Abs. 2 Nr. 2 TTDSG).
+      </p>
+      <p>
+        <strong>Optionale Statistik-Cookies</strong> (anonyme
+        Besucherstatistik zur Verbesserung der Website) setzen wir nur mit
+        deiner Einwilligung (§ 25 Abs. 1 TTDSG, Art. 6 Abs. 1 lit. a DSGVO).
+        Du kannst deine Wahl jederzeit über den Link „Cookie-Einstellungen“
+        im Footer ändern oder widerrufen.
       </p>
 
       <h2>Speicherdauer</h2>

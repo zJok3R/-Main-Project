@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { brand, mainNav } from "@/lib/site-data";
+import { CookieSettingsButton } from "@/components/cookie-settings-button";
 
 const legalLinks = [
   { href: "/impressum", label: "Impressum" },
@@ -34,6 +35,7 @@ export function Footer() {
               {l.label}
             </Link>
           ))}
+          <CookieSettingsButton />
         </nav>
         <p className="text-xs text-muted">
           © {year} · {brand.name} · Alle Preise inkl. MwSt.
