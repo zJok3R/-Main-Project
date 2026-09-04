@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { brand, faqs, packages } from "@/lib/site-data";
+import { faqs, packages } from "@/lib/site-data";
 import { PriceCard } from "@/components/price-card";
 import { Checkout } from "@/components/checkout";
 import { CtaBand } from "@/components/cta-band";
