@@ -142,8 +142,8 @@ export function Checkout({ productName }: { productName: string }) {
             {displayName}
           </h1>
           <p className="mt-2 text-sm text-summary-muted">
-            Unverzüglicher Beginn nach Zahlung — auf deinen ausdrücklichen
-            Wunsch
+            Beginn vor Ablauf der Widerrufsfrist — mit deiner ausdrücklichen
+            Zustimmung
           </p>
 
           <dl className="mt-8 space-y-3 text-sm">
@@ -249,8 +249,8 @@ function PayForm({ amountLabel }: { amountLabel: string }) {
 
       <div className="flex flex-col gap-3">
         <Consent checked={withdrawalConsent} onChange={setWithdrawalConsent}>
-          Ich verlange ausdrücklich, dass unverzüglich mit der Ausführung
-          begonnen wird, und mir ist bekannt, dass mein{" "}
+          Ich stimme ausdrücklich zu, dass vor Ablauf der Widerrufsfrist mit
+          der Ausführung begonnen wird. Mir ist bekannt, dass mein{" "}
           <LegalLink href="/widerruf">Widerrufsrecht</LegalLink> mit Beginn der
           Ausführung erlischt.
         </Consent>

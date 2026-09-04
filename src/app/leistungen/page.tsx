@@ -40,9 +40,9 @@ export default function LeistungenPage() {
             Direkt buchen
           </h2>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
-            Kartenzahlung über Stripe, Festpreis inkl. MwSt. Auf deinen
-            ausdrücklichen Wunsch beginnen wir unverzüglich nach der Zahlung —
-            die Terminabsprache folgt per E-Mail.
+            Kartenzahlung über Stripe, Festpreis inkl. MwSt. Mit deiner
+            ausdrücklichen Zustimmung beginnen wir vor Ablauf der
+            Widerrufsfrist — die Terminabsprache folgt per E-Mail.
           </p>
           <div className="mt-8">
             <Checkout productName="KI-Workshop" />
