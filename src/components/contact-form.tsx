@@ -3,10 +3,19 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { brand } from "@/lib/site-data";
+import type { Dictionary } from "@/lib/i18n";
 
 export type ContactOption = { id: string; name: string };
 
-export function ContactForm({ options }: { options: ContactOption[] }) {
+type ContactFormStrings = Dictionary["contactForm"];
+
+export function ContactForm({
+  options,
+  t,
+}: {
+  options: ContactOption[];
+  t: ContactFormStrings;
+}) {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
@@ -16,9 +25,9 @@ export function ContactForm({ options }: { options: ContactOption[] }) {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const subject = encodeURIComponent(`KI-Anfrage: ${topic || "Allgemein"}`);
+    const subject = encodeURIComponent(`${t.subject}: ${topic || t.general}`);
     const body = encodeURIComponent(
-      `Name: ${name}\nFirma: ${company}\nE-Mail: ${email}\n\nThema: ${topic || "Allgemein"}\n\n${message}`,
+      `${t.bodyName}: ${name}\n${t.bodyCompany}: ${company}\n${t.bodyEmail}: ${email}\n\n${t.bodyTopic}: ${topic || t.general}\n\n${message}`,
     );
     window.location.href = `mailto:${brand.email}?subject=${subject}&body=${body}`;
     setSent(true);
@@ -31,76 +40,72 @@ export function ContactForm({ options }: { options: ContactOption[] }) {
     <form onSubmit={handleSubmit} className="mt-8 grid gap-4">
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-1 text-xs font-medium text-ink">
-          Name *
+          {t.name}
           <input
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
             className={inputClass}
-            placeholder="Vor- und Nachname"
+            placeholder={t.namePlaceholder}
           />
         </label>
         <label className="grid gap-1 text-xs font-medium text-ink">
-          Firma
+          {t.company}
           <input
             value={company}
             onChange={(e) => setCompany(e.target.value)}
             className={inputClass}
-            placeholder="Firmenname"
+            placeholder={t.companyPlaceholder}
           />
         </label>
       </div>
       <label className="grid gap-1 text-xs font-medium text-ink">
-        E-Mail *
+        {t.email}
         <input
           required
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className={inputClass}
-          placeholder="name@firma.de"
+          placeholder={t.emailPlaceholder}
         />
       </label>
       <label className="grid gap-1 text-xs font-medium text-ink">
-        Thema
+        {t.topic}
         <select
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
           className={inputClass}
         >
-          <option value="">— Bitte wählen —</option>
+          <option value="">{t.topicPlaceholder}</option>
           {options.map((o) => (
             <option key={o.id} value={o.name}>
               {o.name}
             </option>
           ))}
-          <option value="Sonstiges">Sonstiges</option>
+          <option value={t.other}>{t.other}</option>
         </select>
       </label>
       <label className="grid gap-1 text-xs font-medium text-ink">
-        Nachricht
+        {t.message}
         <textarea
           rows={5}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className={inputClass}
-          placeholder="Was wollt ihr automatisieren oder lösen?"
+          placeholder={t.messagePlaceholder}
         />
       </label>
       <button
         type="submit"
         className="mt-2 rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-on-primary transition-colors duration-200 hover:bg-primary-strong"
       >
-        Anfrage senden
+        {t.submit}
       </button>
-      <p className="text-xs text-muted">
-        Die Anfrage öffnet dein E-Mail-Programm mit vorausgefüllter Nachricht.
-        Deine Daten verwenden wir ausschließlich zur Beantwortung.
-      </p>
+      <p className="text-xs text-muted">{t.note}</p>
       {sent && (
         <p className="rounded-lg border border-line bg-surface px-3 py-2 text-xs text-ink">
-          Dein E-Mail-Programm öffnet sich. Falls nichts passiert, schreib
-          direkt an{" "}
+          {t.sentA}{" "}
           <a
             href={`mailto:${brand.email}`}
             className="font-medium text-primary-strong hover:underline"

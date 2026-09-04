@@ -1,13 +1,19 @@
 import Link from "next/link";
-import type { PricePackage } from "@/lib/site-data";
+import type { LocalizedPackage } from "@/lib/site-data";
+import { lang as getLang } from "next/root-params";
+import { dictionaries, hasLocale } from "@/lib/i18n";
 
-export function PriceCard({
+export async function PriceCard({
   pkg,
   headingLevel = "h3",
 }: {
-  pkg: PricePackage;
+  pkg: LocalizedPackage;
   headingLevel?: "h2" | "h3";
 }) {
+  const locale = await getLang();
+  const t = hasLocale(locale) ? dictionaries[locale] : dictionaries.de;
+  const lang = hasLocale(locale) ? locale : "de";
+
   const featured = Boolean(pkg.featured);
   const titleColor = featured ? "text-summary-ink" : "text-ink";
   const mutedColor = featured ? "text-summary-muted" : "text-muted";
@@ -41,23 +47,25 @@ export function PriceCard({
         {pkg.duration}
       </p>
       <p className={`mt-3 text-sm leading-relaxed ${titleColor}`}>{pkg.teaser}</p>
-      <p className={`mt-3 text-xs ${mutedColor}`}>Für: {pkg.audience}</p>
+      <p className={`mt-3 text-xs ${mutedColor}`}>
+        {t.priceCard.for} {pkg.audience}
+      </p>
       <ul className={`mt-4 space-y-1.5 text-sm ${mutedColor}`}>
         {pkg.includes.map((item) => (
           <li key={item}>✓ {item}</li>
         ))}
       </ul>
       <p className={`mt-4 text-xs ${mutedColor}`}>
-        Nicht enthalten: {pkg.excluded.join(" · ")}
+        {t.priceCard.notIncluded} {pkg.excluded.join(" · ")}
       </p>
       <div className="mt-6 pt-2">
         {pkg.buyable ? (
-          <Link href="/leistungen#direkt-buchen" className={buttonClass}>
-            Jetzt buchen
+          <Link href={`/${lang}/leistungen#direkt-buchen`} className={buttonClass}>
+            {t.priceCard.book}
           </Link>
         ) : (
-          <Link href="/kontakt" className={buttonClass}>
-            Anfrage stellen
+          <Link href={`/${lang}/kontakt`} className={buttonClass}>
+            {t.priceCard.inquire}
           </Link>
         )}
       </div>

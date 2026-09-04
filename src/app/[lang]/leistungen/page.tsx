@@ -1,36 +1,50 @@
 import type { Metadata } from "next";
-import { faqs, packages } from "@/lib/site-data";
+import { packages } from "@/lib/site-data";
+import type { LocalizedPackage } from "@/lib/site-data";
 import { PriceCard } from "@/components/price-card";
 import { Checkout } from "@/components/checkout";
 import { CtaBand } from "@/components/cta-band";
+import { lang as getLang } from "next/root-params";
+import { dictionaries, hasLocale } from "@/lib/i18n";
+import { pageAlternates } from "@/lib/i18n/alternates";
 
-export const metadata: Metadata = {
-  title: "Leistungen & Preise",
-  description:
-    "Acht Festpreis-Pakete für KI-Implementierung: vom kostenlosen KI-Check über Workflow-Automation bis zum Multi-Agent-System.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLang();
+  const t = hasLocale(locale) ? dictionaries[locale] : dictionaries.de;
+  return {
+    title: t.packagesPage.title,
+    description: t.packagesPage.metaDescription,
+    alternates: pageAlternates(locale, "/leistungen"),
+  };
+}
 
-export default function LeistungenPage() {
-  const workshop = packages.find((p) => p.id === "ki-workshop");
+export default async function LeistungenPage() {
+  const locale = await getLang();
+  const t = hasLocale(locale) ? dictionaries[locale] : dictionaries.de;
+  const lang = hasLocale(locale) ? locale : "de";
+
+  const all: LocalizedPackage[] = packages.map((p) => ({
+    ...p,
+    ...t.packages[p.id],
+  }));
+  const workshop = all.find((p) => p.id === "ki-workshop");
 
   return (
     <main className="flex-1">
       <section className="px-5 pb-12 pt-12 sm:pt-16">
         <div className="mx-auto max-w-5xl">
           <h1 className="text-3xl font-semibold tracking-tight text-balance text-ink sm:text-4xl">
-            Leistungen & Preise
+            {t.packagesPage.title}
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
-            Acht Pakete, klare Preise. Jedes Paket nennt, was drin ist — und
-            was bewusst nicht. Was hier nicht passt, schätzen wir im
-            kostenlosen KI-Check ehrlich ein.
+            {t.packagesPage.intro}
           </p>
         </div>
       </section>
 
       <section className="px-5 py-8">
         <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
-          {packages.map((p) => (
+          {all.map((p) => (
             <PriceCard key={p.id} pkg={p} headingLevel="h2" />
           ))}
         </div>
@@ -39,17 +53,17 @@ export default function LeistungenPage() {
       <section id="direkt-buchen" className="px-5 py-12 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
           <h2 className="text-2xl font-semibold tracking-tight text-ink">
-            Direkt buchen
+            {t.packagesPage.bookHeading}
           </h2>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
-            Kartenzahlung über Stripe, Festpreis inkl. MwSt. Mit deiner
-            ausdrücklichen Zustimmung beginnen wir vor Ablauf der
-            Widerrufsfrist — die Terminabsprache folgt per E-Mail.
+            {t.packagesPage.bookIntro}
           </p>
           <div className="mt-8">
             <Checkout
-              productName={workshop?.name ?? "KI-Workshop"}
+              productName={workshop?.name ?? t.packages["ki-workshop"].name}
               amountCents={workshop?.priceCents ?? 290000}
+              t={t.checkout}
+              lang={lang}
             />
           </div>
         </div>
@@ -58,10 +72,10 @@ export default function LeistungenPage() {
       <section className="px-5 py-12">
         <div className="mx-auto max-w-5xl">
           <h2 className="text-2xl font-semibold tracking-tight text-ink">
-            Häufige Fragen
+            {t.packagesPage.faqHeading}
           </h2>
           <div className="mt-6 grid gap-3">
-            {faqs.map((f) => (
+            {t.faqs.map((f) => (
               <details
                 key={f.q}
                 className="rounded-xl border border-line bg-surface px-5 py-4"
@@ -76,10 +90,7 @@ export default function LeistungenPage() {
         </div>
       </section>
 
-      <CtaBand
-        title="Unklar, welches Paket passt?"
-        text="Der kostenlose KI-Check gibt dir eine ehrliche Empfehlung — inklusive der Option „Noch nicht“."
-      />
+      <CtaBand title={t.packagesPage.ctaTitle} text={t.packagesPage.ctaText} />
     </main>
   );
 }

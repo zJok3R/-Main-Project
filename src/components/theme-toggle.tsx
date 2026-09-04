@@ -10,7 +10,13 @@ import { useState, useSyncExternalStore } from "react";
 // Zustand (classList) ist serverseitig nicht bekannt. Würde der Switch sofort
 // mit dem Client-Zustand rendern, entstünde bei Dark-Mode-Nutzern ein
 // Hydration-Mismatch (aria-checked hell/dunkel).
-export function ThemeToggle() {
+export function ThemeToggle({
+  ariaLight,
+  ariaDark,
+}: {
+  ariaLight: string;
+  ariaDark: string;
+}) {
   const mounted = useSyncExternalStore(
     () => () => {},
     () => true,
@@ -44,7 +50,7 @@ export function ThemeToggle() {
       type="button"
       role="switch"
       aria-checked={dark}
-      aria-label={dark ? "Hellmodus aktivieren" : "Dunkelmodus aktivieren"}
+      aria-label={dark ? ariaLight : ariaDark}
       onClick={toggle}
       className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border transition-colors duration-200 ${
         dark ? "border-primary bg-primary" : "border-line bg-surface-2"

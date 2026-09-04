@@ -1,11 +1,29 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getStripe } from "@/lib/stripe";
+import { lang as getLang } from "next/root-params";
+import { dictionaries, hasLocale } from "@/lib/i18n";
+import { pageAlternates } from "@/lib/i18n/alternates";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLang();
+  const t = hasLocale(locale) ? dictionaries[locale] : dictionaries.de;
+  return {
+    title: t.success.successTitle,
+    robots: { index: false },
+    alternates: pageAlternates(locale, "/success"),
+  };
+}
 
 export default async function SuccessPage({
   searchParams,
 }: {
   searchParams: Promise<{ redirect_status?: string; payment_intent?: string }>;
 }) {
+  const locale = await getLang();
+  const t = hasLocale(locale) ? dictionaries[locale] : dictionaries.de;
+  const lang = hasLocale(locale) ? locale : "de";
+
   const { redirect_status, payment_intent } = await searchParams;
   const succeeded = redirect_status === "succeeded";
 
@@ -75,19 +93,22 @@ export default async function SuccessPage({
         </span>
 
         <h1 className="mt-6 text-2xl font-semibold tracking-tight text-balance text-ink">
-          {succeeded ? "Zahlung erfolgreich" : "Zahlung wird bearbeitet"}
+          {succeeded ? t.success.successTitle : t.success.processingTitle}
         </h1>
         <p className="mt-3 text-sm leading-relaxed text-muted">
           {succeeded
-            ? `Danke für deinen Kauf von ${productName ?? "deinem KI-Workshop"}. Deine Zahlungsbestätigung von Stripe ist per E-Mail unterwegs.`
-            : "Sobald die Zahlung bestätigt ist, erhältst du deine Bestätigung von Stripe per E-Mail."}
+            ? t.success.successText.replace(
+                "{product}",
+                productName ?? t.success.fallbackProduct,
+              )
+            : t.success.processingText}
         </p>
 
         <Link
-          href="/"
+          href={`/${lang}`}
           className="mt-8 inline-flex h-11 items-center justify-center rounded-xl bg-primary px-6 text-sm font-semibold text-on-primary transition-colors duration-200 hover:bg-primary-strong"
         >
-          Zurück zur Startseite
+          {t.success.back}
         </Link>
       </div>
     </main>

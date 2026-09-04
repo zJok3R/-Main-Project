@@ -1,38 +1,43 @@
 import type { Metadata } from "next";
-import { brand, referenzen } from "@/lib/site-data";
 import { CtaBand } from "@/components/cta-band";
+import { lang as getLang } from "next/root-params";
+import { dictionaries, hasLocale } from "@/lib/i18n";
+import { pageAlternates } from "@/lib/i18n/alternates";
 
-export const metadata: Metadata = {
-  title: "Referenzen",
-  description:
-    "Beispiel-Projekte aus typischen Mittelstands-Konstellationen: Workflow-Automation, RAG-Wissensbasis, KI-Chatbot — mit messbaren Ergebnissen.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLang();
+  const t = hasLocale(locale) ? dictionaries[locale] : dictionaries.de;
+  return {
+    title: t.references.title,
+    description: t.references.metaDescription,
+    alternates: pageAlternates(locale, "/referenzen"),
+  };
+}
 
-export default function ReferenzenPage() {
+export default async function ReferenzenPage() {
+  const locale = await getLang();
+  const t = hasLocale(locale) ? dictionaries[locale] : dictionaries.de;
+
   return (
     <main className="flex-1">
       <section className="px-5 pb-12 pt-12 sm:pt-16">
         <div className="mx-auto max-w-5xl">
           <h1 className="text-3xl font-semibold tracking-tight text-balance text-ink sm:text-4xl">
-            Referenzen
+            {t.references.title}
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
-            Messbare Ergebnisse zählen. Die folgenden Fälle zeigen Struktur,
-            Vorgehen und Ergebnisrahmen typischer Projekte.
+            {t.references.intro}
           </p>
           <p className="mt-4 max-w-2xl rounded-xl border border-line bg-surface px-4 py-3 text-xs leading-relaxed text-muted">
-            <strong className="text-ink">Ehrlich vorweg:</strong>{" "}
-            {brand.name} ist eine junge Agentur — diese Fälle sind
-            Beispielrechnungen aus typischen Mittelstandskonstellationen, keine
-            echten Kundenprojekte. Dein Projekt kann das erste echte
-            Referenzstück werden.
+            <strong className="text-ink">{t.references.honestPrefix}</strong>{" "}
+            {t.references.honestText}
           </p>
         </div>
       </section>
 
       <section className="px-5 py-8">
         <div className="mx-auto grid max-w-5xl gap-6">
-          {referenzen.map((f) => (
+          {t.references.cases.map((f) => (
             <article
               key={f.branche}
               className="grid gap-6 rounded-2xl border border-line bg-surface p-6 lg:grid-cols-3"
@@ -43,13 +48,17 @@ export default function ReferenzenPage() {
                 </p>
                 <h2 className="mt-2 font-semibold text-ink">{f.branche}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
-                  <strong className="text-ink">Ausgangslage:</strong>{" "}
+                  <strong className="text-ink">
+                    {t.references.caseLabels.initial}
+                  </strong>{" "}
                   {f.ausgangslage}
                 </p>
               </div>
               <div>
                 <p className="text-sm leading-relaxed text-muted">
-                  <strong className="text-ink">Umsetzung:</strong>{" "}
+                  <strong className="text-ink">
+                    {t.references.caseLabels.implementation}
+                  </strong>{" "}
                   {f.umsetzung}
                 </p>
               </div>
@@ -65,10 +74,7 @@ export default function ReferenzenPage() {
         </div>
       </section>
 
-      <CtaBand
-        title="Dein Projekt als erstes echtes Referenzstück."
-        text="Sprechen wir über deinen Use Case — im kostenlosen KI-Check, ohne Verpflichtung."
-      />
+      <CtaBand title={t.references.ctaTitle} text={t.references.ctaText} />
     </main>
   );
 }

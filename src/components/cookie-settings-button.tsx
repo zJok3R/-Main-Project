@@ -1,7 +1,7 @@
 "use client";
 
 // Footer-Link, der den Cookie-Banner wieder öffnet (zur Änderung der Wahl).
-export function CookieSettingsButton() {
+export function CookieSettingsButton({ label }: { label: string }) {
   return (
     <button
       type="button"
@@ -10,7 +10,7 @@ export function CookieSettingsButton() {
       }
       className="transition-colors duration-200 hover:text-ink"
     >
-      Cookie-Einstellungen
+      {label}
     </button>
   );
 }

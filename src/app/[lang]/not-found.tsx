@@ -1,6 +1,15 @@
 import Link from "next/link";
+import { lang as getLang } from "next/root-params";
+import { dictionaries, hasLocale } from "@/lib/i18n";
 
-export default function NotFound() {
+// not-found innerhalb von [lang]. Bewusst ohne getDictionary(): bei einem
+// ungültigen Lang-Parameter (z. B. /fr) darf hier kein notFound()-Loop
+// entstehen — stattdessen fällt der Text auf Deutsch zurück.
+export default async function NotFound() {
+  const locale = await getLang();
+  const t = hasLocale(locale) ? dictionaries[locale] : dictionaries.de;
+  const lang = hasLocale(locale) ? locale : "de";
+
   return (
     <main className="flex flex-1 items-center justify-center px-5 py-16">
       <div className="w-full max-w-md text-center">
@@ -25,25 +34,24 @@ export default function NotFound() {
         </span>
 
         <h1 className="mt-6 text-2xl font-semibold tracking-tight text-balance text-ink">
-          Seite nicht gefunden
+          {t.notFound.title}
         </h1>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          Diese Adresse gibt es nicht — vielleicht wurde der Link geändert
-          oder die Seite ist umgezogen.
+          {t.notFound.text}
         </p>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Link
-            href="/"
+            href={`/${lang}`}
             className="inline-flex h-11 items-center justify-center rounded-xl bg-primary px-6 text-sm font-semibold text-on-primary transition-colors duration-200 hover:bg-primary-strong"
           >
-            Zurück zur Startseite
+            {t.notFound.back}
           </Link>
           <Link
-            href="/kontakt"
+            href={`/${lang}/kontakt`}
             className="inline-flex h-11 items-center justify-center rounded-xl border border-line px-6 text-sm font-medium text-ink transition-colors duration-200 hover:bg-surface"
           >
-            Zum Kontakt
+            {t.notFound.toContact}
           </Link>
         </div>
       </div>

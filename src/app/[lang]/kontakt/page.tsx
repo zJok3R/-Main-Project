@@ -1,34 +1,42 @@
 import type { Metadata } from "next";
 import { brand, packages } from "@/lib/site-data";
 import { ContactForm } from "@/components/contact-form";
+import { lang as getLang } from "next/root-params";
+import { dictionaries, hasLocale } from "@/lib/i18n";
+import { pageAlternates } from "@/lib/i18n/alternates";
 
-export const metadata: Metadata = {
-  title: "Kontakt",
-  description:
-    "Kostenlosen KI-Check vereinbaren oder direkt ein Paket anfragen — Antwort in der Regel innerhalb eines Werktags.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLang();
+  const t = hasLocale(locale) ? dictionaries[locale] : dictionaries.de;
+  return {
+    title: t.contact.title,
+    description: t.contact.metaDescription,
+    alternates: pageAlternates(locale, "/kontakt"),
+  };
+}
 
-export default function KontaktPage() {
+export default async function KontaktPage() {
+  const locale = await getLang();
+  const t = hasLocale(locale) ? dictionaries[locale] : dictionaries.de;
+
   const options = packages.map((p) => ({
     id: p.id,
-    name: `${p.name} — ${p.price}`,
+    name: `${t.packages[p.id].name} — ${p.price}`,
   }));
 
   return (
     <main className="flex-1 px-5 py-12 sm:py-16">
       <div className="mx-auto max-w-2xl">
         <h1 className="text-3xl font-semibold tracking-tight text-balance text-ink sm:text-4xl">
-          Kontakt
+          {t.contact.title}
         </h1>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          Für den kostenlosen KI-Check oder eine Paket-Anfrage: Formular
-          ausfüllen oder direkt schreiben. Antwort in der Regel innerhalb
-          eines Werktags.
+          {t.contact.intro}
         </p>
 
         <div className="mt-6 rounded-xl border border-line bg-surface px-5 py-4 text-sm">
           <p className="text-muted">
-            E-Mail:{" "}
+            {t.contact.emailLabel}{" "}
             <a
               href={`mailto:${brand.email}`}
               className="font-medium text-primary-strong hover:underline"
@@ -38,7 +46,7 @@ export default function KontaktPage() {
           </p>
         </div>
 
-        <ContactForm options={options} />
+        <ContactForm options={options} t={t.contactForm} />
       </div>
     </main>
   );

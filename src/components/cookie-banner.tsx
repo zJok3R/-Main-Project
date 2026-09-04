@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import type { Dictionary } from "@/lib/i18n";
 
 // Cookie-Consent-Banner (TTDSG/DSGVO).
 //
@@ -37,7 +38,13 @@ function writeConsent(stats: boolean) {
   document.cookie = `${CONSENT_COOKIE}=${value}; expires=${expires}; path=/; SameSite=Lax`;
 }
 
-export function CookieBanner() {
+export function CookieBanner({
+  t,
+  lang,
+}: {
+  t: Dictionary["cookie"];
+  lang: string;
+}) {
   // Hydration-sicherer Mount-Gate (useSyncExternalStore): Server-Snapshot
   // false → Banner nie im Server-HTML, kein Hydration-Mismatch, kein Flash.
   // Nach der Hydration true → Banner erscheint nur ohne gespeicherte
@@ -89,21 +96,16 @@ export function CookieBanner() {
     <div
       className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-md rounded-2xl border border-line bg-canvas p-5 panel-shadow"
       role="dialog"
-      aria-label="Cookie-Einstellungen"
+      aria-label={t.ariaLabel}
     >
-      <h2 className="text-sm font-semibold text-ink">Cookies &amp; Datenschutz</h2>
-      <p className="mt-2 text-xs leading-relaxed text-muted">
-        Wir verwenden technisch notwendige Cookies für den Checkout (Stripe)
-        und zur Speicherung deiner Einwilligung. Optional: anonyme
-        Besucherstatistik, um die Seite zu verbessern.
-      </p>
+      <h2 className="text-sm font-semibold text-ink">{t.title}</h2>
+      <p className="mt-2 text-xs leading-relaxed text-muted">{t.text}</p>
 
       <div className="mt-4 space-y-2 text-xs">
         <label className="flex items-start gap-2.5 text-ink">
           <input type="checkbox" checked disabled className="consent-check mt-0.5 h-4 w-4" />
           <span>
-            <strong>Notwendig</strong> — Checkout &amp; Einwilligungsspeicherung.
-            Immer aktiv.
+            <strong>{t.essentialTitle}</strong> — {t.essentialText}
           </span>
         </label>
         <label className="flex items-start gap-2.5 text-ink">
@@ -114,8 +116,7 @@ export function CookieBanner() {
             className="consent-check mt-0.5 h-4 w-4"
           />
           <span>
-            <strong>Statistik</strong> — anonyme Besucherzahlen zur
-            Verbesserung der Seite.
+            <strong>{t.statsTitle}</strong> — {t.statsText}
           </span>
         </label>
       </div>
@@ -126,19 +127,22 @@ export function CookieBanner() {
           onClick={() => save(true)}
           className="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-on-primary transition-colors duration-200 hover:bg-primary-strong"
         >
-          Alle akzeptieren
+          {t.acceptAll}
         </button>
         <button
           type="button"
           onClick={() => save(stats)}
           className="rounded-full border border-line px-4 py-2 text-xs font-medium text-ink transition-colors duration-200 hover:bg-surface"
         >
-          Auswahl speichern
+          {t.saveSelection}
         </button>
         <p className="pt-1 text-center text-[0.7rem] leading-relaxed text-muted">
-          Details in der{" "}
-          <a href="/datenschutz" className="text-ink underline underline-offset-2">
-            Datenschutzerklärung
+          {t.detailsIn}{" "}
+          <a
+            href={`/${lang}/datenschutz`}
+            className="text-ink underline underline-offset-2"
+          >
+            {t.privacyLabel}
           </a>
           .
         </p>
