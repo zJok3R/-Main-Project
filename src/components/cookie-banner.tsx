@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Cookie-Consent-Banner (TTDSG/DSGVO).
 //
@@ -40,14 +40,20 @@ function writeConsent(stats: boolean) {
 export function CookieBanner() {
   // Lazy initialisiert: auf dem Server unsichtbar, nach der Hydration nur
   // sichtbar, wenn noch keine Einwilligung gespeichert ist.
-  const [consent] = useState<{ essential: boolean; stats: boolean } | null>(
-    () => readConsent(),
-  );
+  const [consent, setConsent] = useState<{
+    essential: boolean;
+    stats: boolean;
+  } | null>(() => readConsent());
   const [open, setOpen] = useState(false);
   const [stats, setStats] = useState(false);
+  const consentRef = useRef(consent);
+  useEffect(() => {
+    consentRef.current = consent;
+  }, [consent]);
 
   function save(chosenStats: boolean) {
     writeConsent(chosenStats);
+    setConsent({ essential: true, stats: chosenStats });
     setOpen(false);
     // Einbindepunkt für optionale Dienste (z. B. Analytics-Script):
     window.dispatchEvent(
@@ -57,9 +63,11 @@ export function CookieBanner() {
     );
   }
 
-  // Footer-Link "Cookie-Einstellungen" öffnet den Banner erneut.
+  // Footer-Link "Cookie-Einstellungen" öffnet den Banner erneut und
+  // übernimmt die zuletzt gespeicherte Wahl in die Checkboxen.
   useEffect(() => {
     function onOpen() {
+      setStats(consentRef.current?.stats ?? false);
       setOpen(true);
     }
     window.addEventListener("omnaut:open-cookie-settings", onOpen);
