@@ -6,7 +6,8 @@
     "dev": "next dev -H 127.0.0.1",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "og:image": "\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --screenshot=public/og-image.png --window-size=1200,630 --hide-scrollbars --force-device-scale-factor=1 scripts/og-image.html"
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^6.6.0",

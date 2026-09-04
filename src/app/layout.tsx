@@ -30,8 +30,9 @@ export const metadata: Metadata = {
     siteName: brand.name,
     title: `${brand.name} — KI-Implementierung für den Mittelstand`,
     description: brand.claim,
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: `${brand.name} — KI-Implementierung für den Mittelstand` }],
   },
-  twitter: { card: "summary" },
+  twitter: { card: "summary_large_image" },
 };
 
 // Theme vor dem ersten Paint setzen — verhindert hell/dunkel-Flackern.
