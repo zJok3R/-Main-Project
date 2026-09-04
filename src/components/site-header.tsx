@@ -24,7 +24,7 @@ export function SiteHeader() {
         </nav>
         <Link
           href="/kontakt"
-          className="rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-on-primary transition-colors duration-200 hover:bg-primary-strong hover:text-canvas"
+          className="rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-on-primary transition-colors duration-200 hover:bg-primary-strong"
         >
           Kostenloser KI-Check
         </Link>

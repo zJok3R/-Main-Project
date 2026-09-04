@@ -1,32 +1,30 @@
 @import "tailwindcss";
 
 /*
-  Produkt X — Checkout
-  Register: Product UI (design serves the task). Restrained, earned-familiarity.
-  Mood: daylight commerce, calm confidence with warmth. The character lives in
-  a COMMITTED honey/ochre summary rail (OKLCH hue ~78) and a soft warm backdrop
-  wash — NOT in a flat cream body (that's the AI tell). The payment panel stays
-  near-white so the form reads as trustworthy and legible.
+  Omnaut — Schwarz / Gelb / Weiß.
+  Brand: klares Gelb als Aktionsfarbe, Schwarz als Text, Weiß als Fläche.
+  Der Checkout behält die gelbe Summary-Rail (committed brand rail) und ein
+  weißes Payment-Panel, damit das Formular vertrauenswürdig bleibt.
 */
 
 :root {
-  --canvas: oklch(1 0 0); /* pure white — the payment panel */
-  --surface: oklch(0.985 0.008 83);
-  --surface-2: oklch(0.965 0.012 83);
-  --ink: oklch(0.23 0.012 83); /* near-black body */
-  --muted: oklch(0.46 0.02 78); /* secondary text — ≥4.5:1 on white */
-  --primary: oklch(0.76 0.12 77); /* honey — brand anchor */
-  --primary-strong: oklch(0.62 0.12 68); /* deeper honey: links/accents on light */
-  --on-primary: oklch(0.25 0.035 72); /* espresso text on honey button */
-  --line: oklch(0.91 0.01 83);
+  --canvas: oklch(1 0 0); /* pure white — panels */
+  --surface: oklch(0.98 0 0);
+  --surface-2: oklch(0.96 0 0);
+  --ink: oklch(0.18 0 0); /* near-black body */
+  --muted: oklch(0.46 0 0); /* secondary text — ≥4.5:1 on white */
+  --primary: oklch(0.88 0.19 98); /* brand yellow */
+  --primary-strong: oklch(0.8 0.17 98); /* darker yellow: hover/accents */
+  --on-primary: oklch(0.2 0 0); /* black on yellow button */
+  --line: oklch(0.9 0 0);
   --error: oklch(0.55 0.19 25);
   --success: oklch(0.55 0.13 150);
 
-  /* Committed honey summary rail */
-  --summary: oklch(0.92 0.055 80);
-  --summary-ink: oklch(0.28 0.04 62);
-  --summary-muted: oklch(0.44 0.045 64); /* ≥4.5:1 on the honey surface */
-  --summary-line: oklch(0.84 0.05 78);
+  /* Committed yellow summary rail */
+  --summary: oklch(0.92 0.15 98);
+  --summary-ink: oklch(0.22 0 0);
+  --summary-muted: oklch(0.33 0 0); /* ≥4.5:1 on the yellow surface */
+  --summary-line: oklch(0.83 0.13 98);
 }
 
 @theme inline {
@@ -50,31 +48,26 @@
 }
 
 body {
-  /* Warm corner wash over an almost-white base — depth, not flat cream. */
+  /* Weiß mit einem sehr leichten gelben Corner-Glow — Tiefe, kein Creme-Flair. */
   background:
     radial-gradient(
       120% 110% at 12% 0%,
-      oklch(0.96 0.04 82) 0%,
+      oklch(0.97 0.05 98) 0%,
       transparent 52%
     ),
-    radial-gradient(
-      100% 100% at 100% 100%,
-      oklch(0.96 0.03 48) 0%,
-      transparent 48%
-    ),
-    oklch(0.992 0.004 80);
+    oklch(0.995 0.002 98);
   background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Committed honey summary rail with a soft top-right highlight. */
+/* Committed yellow summary rail with a soft top-right highlight. */
 .summary-rail {
   background:
     radial-gradient(
       130% 90% at 100% 0%,
-      oklch(0.95 0.06 86) 0%,
+      oklch(0.96 0.09 98) 0%,
       transparent 60%
     ),
     var(--summary);
@@ -83,7 +76,7 @@ body {
 .panel-shadow {
   box-shadow:
     0 1px 2px oklch(0 0 0 / 0.04),
-    0 18px 50px -18px oklch(0.4 0.06 70 / 0.28);
+    0 18px 50px -18px oklch(0.25 0 0 / 0.28);
 }
 
 /* Brand-tinted checkbox for the consent boxes. */
@@ -114,7 +107,7 @@ body {
   list-style: disc;
 }
 .legal a {
-  color: var(--primary-strong);
+  color: var(--ink);
   text-decoration: underline;
   text-underline-offset: 2px;
 }

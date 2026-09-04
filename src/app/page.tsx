@@ -30,7 +30,7 @@ export default function HomePage() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/kontakt"
-              className="rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-on-primary transition-colors duration-200 hover:bg-primary-strong hover:text-canvas"
+              className="rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-on-primary transition-colors duration-200 hover:bg-primary-strong"
             >
               Kostenloser KI-Check
             </Link>

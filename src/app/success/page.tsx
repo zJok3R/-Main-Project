@@ -85,7 +85,7 @@ export default async function SuccessPage({
 
         <Link
           href="/"
-          className="mt-8 inline-flex h-11 items-center justify-center rounded-xl bg-primary px-6 text-sm font-semibold text-on-primary transition-colors duration-200 hover:bg-primary-strong hover:text-canvas"
+          className="mt-8 inline-flex h-11 items-center justify-center rounded-xl bg-primary px-6 text-sm font-semibold text-on-primary transition-colors duration-200 hover:bg-primary-strong"
         >
           Zurück zur Startseite
         </Link>

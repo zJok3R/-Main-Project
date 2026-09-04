@@ -23,13 +23,13 @@ const stripePromise = publishableKey ? loadStripe(publishableKey) : null;
 // Regelbesteuert: der deutsche B2C-Bruttopreis enthält die MwSt. bereits.
 const VAT_RATE = 0.19;
 
-// Stripe-Appearance an die Marke angelehnt (honey/ochre). Greift, sobald ein
+// Stripe-Appearance an die Marke angelehnt (Schwarz/Gelb). Greift, sobald ein
 // Preis hinterlegt ist und das PaymentElement mountet.
 const appearance = {
   theme: "stripe" as const,
   variables: {
-    colorPrimary: "#b9802a",
-    colorText: "#2b2620",
+    colorPrimary: "#E8C200",
+    colorText: "#0A0A0A",
     colorDanger: "#c0392f",
     fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
     borderRadius: "10px",
@@ -256,7 +256,7 @@ function PayForm({ amountLabel }: { amountLabel: string }) {
         <button
           type="submit"
           disabled={!canSubmit}
-          className="inline-flex h-12 items-center justify-center rounded-xl bg-primary px-6 text-sm font-semibold text-on-primary transition-colors duration-200 hover:bg-primary-strong hover:text-canvas focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-55"
+          className="inline-flex h-12 items-center justify-center rounded-xl bg-primary px-6 text-sm font-semibold text-on-primary transition-colors duration-200 hover:bg-primary-strong focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-55"
         >
           {submitting ? "Wird verarbeitet…" : "Zahlungspflichtig bestellen"}
         </button>
@@ -298,7 +298,7 @@ function LegalLink({ href, children }: { href: string; children: ReactNode }) {
     <Link
       href={href}
       target="_blank"
-      className="font-medium text-ink underline underline-offset-2 hover:text-primary-strong"
+      className="font-medium text-ink underline underline-offset-2 hover:opacity-70"
     >
       {children}
     </Link>
