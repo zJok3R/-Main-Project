@@ -11,6 +11,8 @@ export const metadata: Metadata = {
 };
 
 export default function LeistungenPage() {
+  const workshop = packages.find((p) => p.id === "ki-workshop");
+
   return (
     <main className="flex-1">
       <section className="px-5 pb-12 pt-12 sm:pt-16">
@@ -45,7 +47,10 @@ export default function LeistungenPage() {
             Widerrufsfrist — die Terminabsprache folgt per E-Mail.
           </p>
           <div className="mt-8">
-            <Checkout productName="KI-Workshop" />
+            <Checkout
+              productName={workshop?.name ?? "KI-Workshop"}
+              amountCents={workshop?.priceCents ?? 290000}
+            />
           </div>
         </div>
       </section>
