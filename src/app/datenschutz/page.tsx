@@ -52,9 +52,9 @@ export default function DatenschutzPage() {
         Für die Zahlungsabwicklung nutzen wir Stripe (Stripe Payments Europe,
         Ltd., 1 Grand Canal Street Lower, Grand Canal Dock, Dublin, Irland).
         Bei einer Zahlung werden die dafür erforderlichen Daten (u. a.
-        Zahlungsmittel, Betrag, Transaktionsdaten) direkt über ein
-        eingebettetes Stripe-Bezahlfeld an Stripe übermittelt und dort
-        verarbeitet — die Kartendaten erreichen unsere Server nicht. Dabei
+        Zahlungsmittel, Betrag, Transaktionsdaten) direkt über die von Stripe
+        bereitgestellte Checkout-Seite (Payment Link) an Stripe übermittelt
+        und dort verarbeitet — die Kartendaten erreichen unsere Server nicht. Dabei
         kann es zu einer Übermittlung in die USA kommen; Stripe ist unter dem
         EU-U.S. Data Privacy Framework zertifiziert. Auf den Bezahlseiten
         setzt Stripe technisch notwendige Cookies (z. B. zur
@@ -69,6 +69,19 @@ export default function DatenschutzPage() {
         Auftrag Zahlungsstatus-Ereignisse (z. B. „Zahlung erfolgreich“).
         Verarbeitet werden dabei Transaktionsdaten wie Zahlungsbetrag,
         Zeitpunkt und Status. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO.
+      </p>
+
+      <h2>E-Mail-Versand (Resend)</h2>
+      <p>
+        Für Transaktions-E-Mails (Bestellbestätigung nach Zahlungseingang)
+        nutzen wir Resend (Resend, Inc., 2261 Market Street #5039, San
+        Francisco, CA 94114, USA) als Versanddienstleister. Verarbeitet werden
+        dabei die bei der Zahlung angegebene E-Mail-Adresse sowie
+        Bestelldaten (Produkt, Betrag). Dabei kann es zu einer Übermittlung in
+        die USA kommen; die Übermittlung erfolgt auf Grundlage von
+        EU-Standardvertragsklauseln, mit Resend besteht ein
+        Auftragsverarbeitungsvertrag. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b
+        DSGVO (Erfüllung des Vertrags).
       </p>
 
       <h2>Cookies &amp; Einwilligung</h2>
