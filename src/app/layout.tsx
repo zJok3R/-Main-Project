@@ -33,6 +33,9 @@ export const metadata: Metadata = {
   twitter: { card: "summary" },
 };
 
+// Theme vor dem ersten Paint setzen — verhindert hell/dunkel-Flackern.
+const themeScript = `(function(){try{var t=localStorage.getItem("omnaut-theme");if(!t){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}if(t==="dark"){document.documentElement.classList.add("dark");}}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -41,8 +44,12 @@ export default function RootLayout({
   return (
     <html
       lang="de"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="flex min-h-dvh flex-col">
         <SiteHeader />
         {children}

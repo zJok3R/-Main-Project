@@ -23,19 +23,23 @@ const stripePromise = publishableKey ? loadStripe(publishableKey) : null;
 // Regelbesteuert: der deutsche B2C-Bruttopreis enthält die MwSt. bereits.
 const VAT_RATE = 0.19;
 
-// Stripe-Appearance an die Marke angelehnt (Schwarz/Gelb). Greift, sobald ein
-// Preis hinterlegt ist und das PaymentElement mountet.
-const appearance = {
-  theme: "stripe" as const,
-  variables: {
-    colorPrimary: "#E8C200",
-    colorText: "#0A0A0A",
-    colorDanger: "#c0392f",
-    fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
-    borderRadius: "10px",
-    spacingUnit: "4px",
-  },
-};
+// Stripe-Appearance an die Marke angelehnt (Schwarz/Gelb) — passt sich dem
+// Dark Mode an (PaymentElement läuft in einem eigenen iframe, CSS-Variablen
+// der Seite wirken dort nicht).
+function stripeAppearance(isDark: boolean) {
+  return {
+    theme: "stripe" as const,
+    variables: {
+      colorPrimary: "#E8C200",
+      colorText: isDark ? "#EDEDED" : "#0A0A0A",
+      colorBackground: isDark ? "#1A1A1A" : "#FFFFFF",
+      colorDanger: isDark ? "#E5484D" : "#c0392f",
+      fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
+      borderRadius: "10px",
+      spacingUnit: "4px",
+    },
+  };
+}
 
 type CheckoutData = {
   clientSecret: string;
@@ -61,6 +65,13 @@ function vatPortion(gross: number) {
 export function Checkout({ productName }: { productName: string }) {
   const [status, setStatus] = useState<Status>("loading");
   const [data, setData] = useState<CheckoutData | null>(null);
+  // Dark Mode einmalig beim Mount aus dem DOM lesen (Inline-Script im Layout
+  // setzt die Klasse vor dem Hydrieren).
+  const [isDark] = useState<boolean>(
+    () =>
+      typeof document !== "undefined" &&
+      document.documentElement.classList.contains("dark"),
+  );
   // Einmalige ID pro Seitenaufruf: dient dem Server als Stripe-Idempotenz-Key,
   // damit Retries/Doppelklicks keinen zweiten PaymentIntent erzeugen.
   // Lazy erzeugt (nicht während des Renders — React-Purity-Regel).
@@ -177,7 +188,10 @@ export function Checkout({ productName }: { productName: string }) {
           {priced && stripePromise && (
             <Elements
               stripe={stripePromise}
-              options={{ clientSecret: priced.clientSecret, appearance }}
+              options={{
+                clientSecret: priced.clientSecret,
+                appearance: stripeAppearance(isDark),
+              }}
             >
               <PayForm amountLabel={grossLabel ?? ""} />
             </Elements>

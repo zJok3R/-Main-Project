@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { brand, mainNav } from "@/lib/site-data";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function SiteHeader() {
   return (
@@ -22,12 +23,15 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <Link
-          href="/kontakt"
-          className="rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-on-primary transition-colors duration-200 hover:bg-primary-strong"
-        >
-          Kostenloser KI-Check
-        </Link>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <Link
+            href="/kontakt"
+            className="rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-on-primary transition-colors duration-200 hover:bg-primary-strong"
+          >
+            Kostenloser KI-Check
+          </Link>
+        </div>
       </div>
     </header>
   );
