@@ -19,7 +19,7 @@ export async function SiteHeader() {
         >
           {brand.name}
         </Link>
-        <nav className="hidden flex-wrap items-center gap-x-5 gap-y-1 text-sm text-muted sm:flex">
+        <nav className="hidden w-[27.5rem] flex-wrap items-center justify-center gap-x-5 gap-y-1 text-sm text-muted sm:flex">
           {t.nav.map((item) => (
             <Link
               key={item.href}
@@ -35,7 +35,7 @@ export async function SiteHeader() {
           <ThemeToggle ariaLight={t.theme.toLight} ariaDark={t.theme.toDark} />
           <Link
             href={`/${lang}/kontakt`}
-            className="rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-on-primary transition-colors duration-200 hover:bg-primary-strong"
+            className="inline-flex min-w-[11rem] items-center justify-center rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-on-primary transition-colors duration-200 hover:bg-primary-strong"
           >
             {t.header.cta}
           </Link>
