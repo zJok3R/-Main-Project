@@ -322,14 +322,14 @@ export const referenzen: Referenz[] = [
   {
     branche: "Dienstleister, 60 Mitarbeitende",
     paket: "KI-Chatbot",
-    kennzahl: "68 %",
+    kennzahl: "90 %",
     kennzahlLabel: "Anfragen automatisch beantwortet",
     ausgangslage:
       "Hotline mit 200 wiederkehrenden Fragen — Kunden warten, Team blockiert.",
     umsetzung:
       "Chatbot auf Website und Teams, Wissensbasis aus 200 FAQs, DSGVO-konformes EU-Hosting, Eskalationsregeln.",
     ergebnisse: [
-      "68 % der Anfragen automatisch beantwortet",
+      "90 % der Anfragen automatisch beantwortet",
       "Hotline-Kapazität für echte Fälle frei",
     ],
     dauer: "4 Wochen",
