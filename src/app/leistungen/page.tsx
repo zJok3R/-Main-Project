@@ -34,14 +34,15 @@ export default function LeistungenPage() {
         </div>
       </section>
 
-      <section className="px-5 py-12">
+      <section id="direkt-buchen" className="px-5 py-12 scroll-mt-24">
         <div className="mx-auto max-w-5xl">
           <h2 className="text-2xl font-semibold tracking-tight text-ink">
             Direkt buchen
           </h2>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
-            Kartenzahlung über Stripe, Festpreis inkl. MwSt. Nach der Zahlung
-            erhältst du deinen Zugang sofort per E-Mail.
+            Kartenzahlung über Stripe, Festpreis inkl. MwSt. Auf deinen
+            ausdrücklichen Wunsch beginnen wir unverzüglich nach der Zahlung —
+            die Terminabsprache folgt per E-Mail.
           </p>
           <div className="mt-8">
             <Checkout productName="KI-Workshop" />

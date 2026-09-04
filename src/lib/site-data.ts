@@ -42,6 +42,7 @@ export type PricePackage = {
   includes: string[];
   excluded: string[];
   featured?: boolean;
+  buyable?: boolean;
 };
 
 export const packages: PricePackage[] = [
@@ -80,6 +81,7 @@ export const packages: PricePackage[] = [
     ],
     excluded: ["Umsetzung", "Lizenzkosten", "Reisekosten (nach Aufwand)"],
     featured: true,
+    buyable: true,
   },
   {
     id: "ki-audit",

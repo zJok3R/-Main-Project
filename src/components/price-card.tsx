@@ -42,9 +42,15 @@ export function PriceCard({ pkg }: { pkg: PricePackage }) {
         Nicht enthalten: {pkg.excluded.join(" · ")}
       </p>
       <div className="mt-6 pt-2">
-        <Link href="/kontakt" className={buttonClass}>
-          Anfrage stellen
-        </Link>
+        {pkg.buyable ? (
+          <Link href="/leistungen#direkt-buchen" className={buttonClass}>
+            Jetzt buchen
+          </Link>
+        ) : (
+          <Link href="/kontakt" className={buttonClass}>
+            Anfrage stellen
+          </Link>
+        )}
       </div>
     </article>
   );

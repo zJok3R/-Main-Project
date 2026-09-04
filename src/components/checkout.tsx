@@ -142,7 +142,8 @@ export function Checkout({ productName }: { productName: string }) {
             {displayName}
           </h1>
           <p className="mt-2 text-sm text-summary-muted">
-            Digitaler Zugang · sofort nach Zahlung
+            Unverzüglicher Beginn nach Zahlung — auf deinen ausdrücklichen
+            Wunsch
           </p>
 
           <dl className="mt-8 space-y-3 text-sm">
@@ -248,8 +249,8 @@ function PayForm({ amountLabel }: { amountLabel: string }) {
 
       <div className="flex flex-col gap-3">
         <Consent checked={withdrawalConsent} onChange={setWithdrawalConsent}>
-          Ich verlange ausdrücklich, dass mit der Ausführung sofort begonnen
-          wird, und mir ist bekannt, dass mein{" "}
+          Ich verlange ausdrücklich, dass unverzüglich mit der Ausführung
+          begonnen wird, und mir ist bekannt, dass mein{" "}
           <LegalLink href="/widerruf">Widerrufsrecht</LegalLink> mit Beginn der
           Ausführung erlischt.
         </Consent>
