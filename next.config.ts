@@ -12,11 +12,11 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              `script-src 'self' https://js.stripe.com 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+              `script-src 'self' https://js.stripe.com https://va.vercel-scripts.com 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https://*.stripe.com",
               "font-src 'self' data:",
-              "connect-src 'self' https://*.stripe.com",
+              "connect-src 'self' https://*.stripe.com https://va.vercel-scripts.com",
               "frame-src https://js.stripe.com https://hooks.stripe.com",
               "frame-ancestors 'self'",
               "base-uri 'self'",
