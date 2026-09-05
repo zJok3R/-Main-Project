@@ -8,6 +8,7 @@ import { ThemeSync } from "@/components/theme-sync";
 import { brand } from "@/lib/site-data";
 import { lang as getLang } from "next/root-params";
 import { dictionaries, hasLocale, locales } from "@/lib/i18n";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -81,6 +82,7 @@ export default async function RootLayout({
         <Footer />
         <ThemeSync />
         <CookieBanner t={t.cookie} lang={lang} />
+        <SpeedInsights />
       </body>
     </html>
   );
