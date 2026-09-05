@@ -41,6 +41,11 @@ export async function PriceCard({
               {pkg.priceUnit}
             </span>
           ) : null}
+          {pkg.id !== "ki-check" ? (
+            <span className={`block text-xs ${mutedColor}`}>
+              {t.priceCard.vatNote}
+            </span>
+          ) : null}
         </p>
       </div>
       <p className={`mt-1 text-xs font-medium uppercase tracking-wide ${mutedColor}`}>

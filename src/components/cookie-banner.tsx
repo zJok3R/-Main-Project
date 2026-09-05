@@ -131,6 +131,13 @@ export function CookieBanner({
         </button>
         <button
           type="button"
+          onClick={() => save(false)}
+          className="rounded-full border border-line px-4 py-2 text-xs font-medium text-ink transition-colors duration-200 hover:bg-surface"
+        >
+          {t.necessaryOnly}
+        </button>
+        <button
+          type="button"
           onClick={() => save(stats)}
           className="rounded-full border border-line px-4 py-2 text-xs font-medium text-ink transition-colors duration-200 hover:bg-surface"
         >

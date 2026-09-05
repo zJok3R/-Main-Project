@@ -28,6 +28,7 @@ export const en = {
       { href: "/datenschutz", label: "Privacy Policy" },
       { href: "/widerruf", label: "Withdrawal Policy" },
       { href: "/agb", label: "Terms & Conditions" },
+      { href: "/kuendigung", label: "Cancel contract" },
     ],
     cookieSettings: "Cookie Settings",
     rights: "All prices include VAT.",
@@ -423,6 +424,29 @@ export const en = {
     bodyEmail: "Email",
     bodyTopic: "Topic",
   },
+  cancel: {
+    title: "Cancel contract",
+    metaDescription:
+      "Cancel your ongoing contract (e.g. Operations Retainer) online — quick and informal.",
+    intro:
+      "Here you can cancel your ongoing contract (e.g. Operations Retainer). Cancelling opens your email client with a pre-filled message to us.",
+    name: "Name *",
+    namePlaceholder: "First and last name",
+    email: "Email *",
+    emailPlaceholder: "name@company.com",
+    contract: "Contract",
+    contractPlaceholder: "e.g. Operations Retainer or customer number",
+    message: "Message",
+    messagePlaceholder: "Optional: reason or notes",
+    submit: "Send cancellation",
+    note: "Submitting opens your email client. The cancellation takes effect as soon as it reaches us by email.",
+    sentA: "Your email client is opening. If nothing happens, write directly to",
+    subject: "Contract cancellation",
+    bodyName: "Name",
+    bodyEmail: "Email",
+    bodyContract: "Contract",
+    bodyMessage: "Message",
+  },
   cookie: {
     ariaLabel: "Cookie Settings",
     title: "Cookies & Privacy",
@@ -432,6 +456,7 @@ export const en = {
     statsTitle: "Statistics",
     statsText: "anonymous visitor numbers to improve the site.",
     acceptAll: "Accept all",
+    necessaryOnly: "Essential only",
     saveSelection: "Save selection",
     detailsIn: "Details in the",
     privacyLabel: "Privacy Policy",
@@ -483,12 +508,10 @@ export const en = {
     notIncluded: "Not included:",
     book: "Book now",
     inquire: "Request now",
+    vatNote: "incl. VAT.",
   },
   legal: {
     back: "← Back to checkout",
-    placeholderStrong: "⚠️ Placeholder.",
-    placeholderText:
-      "This content is not legally valid text. Replace it with a legal text generator (e.g. eRecht24, IT-Recht-Kanzlei) or a lawyer's review before going live.",
     agb: {
       title: "General Terms and Conditions",
       metaTitle: "Terms & Conditions",
@@ -509,7 +532,6 @@ export const en = {
       withdrawalH: "5. Right of Withdrawal",
       withdrawalP: "The",
       withdrawalLink: "withdrawal policy",
-      note: "Note: Before selling complex project services, a legal review of these terms is recommended.",
     },
     datenschutz: {
       title: "Privacy Policy",

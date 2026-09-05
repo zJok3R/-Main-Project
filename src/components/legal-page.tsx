@@ -3,8 +3,7 @@ import type { ReactNode } from "react";
 import { lang as getLang } from "next/root-params";
 import { dictionaries, hasLocale } from "@/lib/i18n";
 
-// Geteilte Hülle für die Rechtsseiten. Macht den Platzhalter-Charakter
-// unübersehbar — die Inhalte sind KEIN rechtssicherer Text.
+// Geteilte Hülle für die Rechtsseiten (Impressum, Datenschutz, AGB, Widerruf).
 export async function LegalPage({
   title,
   children,
@@ -29,11 +28,6 @@ export async function LegalPage({
         <h1 className="mt-4 text-3xl font-semibold tracking-tight text-balance text-ink">
           {title}
         </h1>
-
-        <div className="mt-4 rounded-xl border border-line bg-surface px-4 py-3 text-xs leading-relaxed text-muted">
-          <strong className="text-ink">{t.legal.placeholderStrong}</strong>{" "}
-          {t.legal.placeholderText}
-        </div>
 
         <div className="mt-8">{children}</div>
       </article>

@@ -28,6 +28,7 @@ export const de = {
       { href: "/datenschutz", label: "Datenschutz" },
       { href: "/widerruf", label: "Widerrufsbelehrung" },
       { href: "/agb", label: "AGB" },
+      { href: "/kuendigung", label: "Vertrag kündigen" },
     ],
     cookieSettings: "Cookie-Einstellungen",
     rights: "Alle Preise inkl. MwSt.",
@@ -419,6 +420,29 @@ export const de = {
     bodyEmail: "E-Mail",
     bodyTopic: "Thema",
   },
+  cancel: {
+    title: "Vertrag kündigen",
+    metaDescription:
+      "Laufenden Vertrag (z. B. Betriebs-Retainer) online kündigen — einfach und formlos.",
+    intro:
+      "Hier kannst du deinen laufenden Vertrag (z. B. Betriebs-Retainer) kündigen. Die Kündigung öffnet dein E-Mail-Programm mit einer vorausgefüllten Nachricht an uns.",
+    name: "Name *",
+    namePlaceholder: "Vor- und Nachname",
+    email: "E-Mail *",
+    emailPlaceholder: "name@firma.de",
+    contract: "Vertrag",
+    contractPlaceholder: "z. B. Betriebs-Retainer oder Kundennummer",
+    message: "Nachricht",
+    messagePlaceholder: "Optional: Grund oder Hinweise",
+    submit: "Kündigung senden",
+    note: "Beim Absenden öffnet sich dein E-Mail-Programm. Die Kündigung wird wirksam, sobald sie uns per E-Mail zugeht.",
+    sentA: "Dein E-Mail-Programm öffnet sich. Falls nichts passiert, schreib direkt an",
+    subject: "Vertragskündigung",
+    bodyName: "Name",
+    bodyEmail: "E-Mail",
+    bodyContract: "Vertrag",
+    bodyMessage: "Nachricht",
+  },
   cookie: {
     ariaLabel: "Cookie-Einstellungen",
     title: "Cookies & Datenschutz",
@@ -428,6 +452,7 @@ export const de = {
     statsTitle: "Statistik",
     statsText: "anonyme Besucherzahlen zur Verbesserung der Seite.",
     acceptAll: "Alle akzeptieren",
+    necessaryOnly: "Nur notwendige",
     saveSelection: "Auswahl speichern",
     detailsIn: "Details in der",
     privacyLabel: "Datenschutzerklärung",
@@ -479,12 +504,10 @@ export const de = {
     notIncluded: "Nicht enthalten:",
     book: "Jetzt buchen",
     inquire: "Anfrage stellen",
+    vatNote: "inkl. MwSt.",
   },
   legal: {
     back: "← Zurück zum Checkout",
-    placeholderStrong: "⚠️ Platzhalter.",
-    placeholderText:
-      "Diese Inhalte sind kein rechtssicherer Text. Vor Go-Live durch einen Rechtstexte-Generator (z. B. eRecht24, IT-Recht-Kanzlei) oder eine anwaltliche Prüfung ersetzen.",
     agb: {
       title: "Allgemeine Geschäftsbedingungen",
       metaTitle: "AGB",
@@ -505,7 +528,6 @@ export const de = {
       withdrawalH: "5. Widerrufsrecht",
       withdrawalP: "Es gilt die",
       withdrawalLink: "Widerrufsbelehrung",
-      note: "Hinweis: Vor dem Verkauf komplexer Projektleistungen empfiehlt sich eine anwaltliche Prüfung dieser AGB.",
     },
     datenschutz: {
       title: "Datenschutzerklärung",

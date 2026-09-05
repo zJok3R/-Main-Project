@@ -42,10 +42,6 @@ export default async function AgbPage() {
         {d.withdrawalP}{" "}
         <Link href={`/${lang}/widerruf`}>{d.withdrawalLink}</Link>
       </p>
-
-      <p>
-        <em>{d.note}</em>
-      </p>
     </LegalPage>
   );
 }
